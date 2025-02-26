@@ -30,7 +30,7 @@ const Navbar = () => {
             <div className="navbar-container">
                 {/* Logo */}
                 <Link to="/" className="navbar-logo">
-                    ADEI
+                    <img src="/Images/adei.png" alt="Logo ADEI" /> {/* Chemin absolu depuis public/ */}
                 </Link>
 
                 {/* Menu pour les écrans larges */}

@@ -1,37 +1,45 @@
-import React from "react";
+// News.js
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Card from "../components/Card";
 import "../styles/News.css";
+import articlesData from "../Utils/News.json";
 
 const News = () => {
-    const articles = [
-        {
-            id: 1,
-            title: "Nouveau partenariat avec XYZ",
-            content: "L'ADEI a signé un partenariat avec XYZ pour soutenir nos activités.",
-            date: "2023-10-01",
-        },
-        {
-            id: 2,
-            title: "Atelier de programmation",
-            content: "Un atelier de programmation est organisé le 15 octobre. Inscrivez-vous dès maintenant !",
-            date: "2023-10-05",
-        },
-    ];
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        setArticles(articlesData);
+    }, []);
 
     return (
-        <div className="news">
+        <motion.div
+            className="news"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             <h1>Actualités</h1>
             <div className="news-list">
-                {articles.map((article) => (
-                    <Card
+                {articles.map((article, index) => (
+                    <motion.div
                         key={article.id}
-                        title={article.title}
-                        content={article.content}
-                        footer={`Publié le : ${article.date}`}
-                    />
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.2, duration: 0.5 }}
+                    >
+                        <Card
+                            title={article.title}
+                            content={article.content}
+                            footer={`Publié le : ${article.date}`}
+                        />
+                    </motion.div>
                 ))}
             </div>
-        </div>
+            <a href="/more-news" className="button-accent">
+                Voir plus d'articles
+            </a>
+        </motion.div>
     );
 };
 

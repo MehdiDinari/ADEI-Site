@@ -29,7 +29,11 @@
     text-decoration: none;
     transition: color 0.3s ease;
 }
+.navbar-logo img {
+    height: 80px; /* Ajustez la hauteur du logo */
+    width: auto; /* Garde les proportions du logo */
 
+}
 .navbar-logo:hover {
     color: #d7140e
 ;

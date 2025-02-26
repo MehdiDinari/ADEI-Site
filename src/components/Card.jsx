@@ -1,12 +1,13 @@
 import React from "react";
-import "../styles/Card.css";
+import '../styles/Card.css';
 
-const Card = ({ title, content, footer }) => {
+const Card = ({ title, content }) => {
     return (
         <div className="card">
-            {title && <h3 className="card-title">{title}</h3>}
-            {content && <p className="card-content">{content}</p>}
-            {footer && <footer className="card-footer">{footer}</footer>}
+            <h2>{title}</h2> {/* Affiche le titre du club */}
+            <div className="card-content">
+                {content} {/* Affiche le contenu */}
+            </div>
         </div>
     );
 };
