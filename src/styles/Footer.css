@@ -1,0 +1,95 @@
+/* styles/Footer.css */
+.footer {
+    background-color: #372d2d; /* Couleur de fond sombre */
+    color: #fff;
+    padding: 20px 10px; /* Réduit le padding */
+    font-family: Arial, sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px; /* Réduit l'espace entre les sections */
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 150px; /* Largeur minimale réduite */
+    margin-bottom: 10px; /* Espacement réduit */
+}
+
+.footer-section h3 {
+    font-size: 1rem; /* Taille de police réduite */
+    margin-bottom: 10px; /* Espacement réduit */
+    color: #f15050; /* Couleur d'accent */
+}
+
+.footer-section p,
+.footer-section ul {
+    font-size: 0.8rem; /* Taille de police réduite */
+    line-height: 1.4; /* Interligne réduit */
+    color: #ecf0f1; /* Texte clair */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 5px; /* Espacement réduit */
+}
+
+.footer-section ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #f15050; /* Couleur d'accent au survol */
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px; /* Espacement réduit entre les icônes */
+}
+
+.social-icons a {
+    color: #ecf0f1;
+    font-size: 1.2rem; /* Taille des icônes réduite */
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #f15050; /* Couleur d'accent au survol */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 10px; /* Espacement réduit */
+    padding-top: 10px; /* Espacement réduit */
+    border-top: 1px solid #ffffff; /* Ligne de séparation */
+    font-size: 1rem; /* Taille de police réduite */
+    color: #bdc3c7; /* Texte plus clair */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        max-width: 100%;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}

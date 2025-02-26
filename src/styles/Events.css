@@ -1,0 +1,27 @@
+.events {
+    padding: 20px;
+}
+
+.events h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calendar-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.event-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

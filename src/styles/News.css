@@ -1,0 +1,21 @@
+.news {
+    padding: 20px;
+}
+
+.news h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.news-list .card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
