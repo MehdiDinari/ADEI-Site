@@ -1,0 +1,40 @@
+/* NewsCarousel.css */
+.gt-blog-carousel {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.gt-post-style-1 {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.gt-post-style-1 .gt-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.gt-post-style-1 .gt-title {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.gt-post-style-1 .gt-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.gt-post-style-1 .gt-title a:hover {
+    color: #a8201a;
+}
+
+.gt-post-style-1 .gt-excerpt {
+    font-size: 0.9rem;
+    color: #666;
+}

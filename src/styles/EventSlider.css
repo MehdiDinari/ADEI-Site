@@ -1,0 +1,70 @@
+/* EventSlider.css */
+.gt-events-slider {
+    position: relative;
+    height: 70vh;
+    overflow: hidden;
+}
+
+.gt-slide-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.gt-opacity {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.gt-content {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 20%;
+}
+
+.gt-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.gt-information {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.gt-information li {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.gt-information svg {
+    margin-right: 5px;
+}
+
+.buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #a8201a;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.buttons a:hover {
+    background-color: #8c1b16;
+}

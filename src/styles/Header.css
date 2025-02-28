@@ -1,22 +1,186 @@
-header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
+/* Styles de base */
+.home {
+    font-family: "Arial", sans-serif;
+    color: #333;
+    text-align: center;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-nav {
+/* Section Hero */
+.hero-section {
+    background-image: url('../../public/Images/ensaf.jpg');
+    height: 100vh;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    color: white;
+    animation: fadeIn 2s ease-in-out;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
-nav a {
-    font-size: 1.1rem;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 4px;
+.hero-content {
+    text-align: center;
+    z-index: 1;
 }
 
-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: slideInFromTop 1.5s ease-out;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    animation: slideInFromBottom 1.5s ease-out;
+}
+
+.cta-button {
+    background-color: #1abc9c;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 2.5s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #16a085;
+    transform: scale(1.05);
+}
+
+/* Section Mission */
+.mission-section {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.mission-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.mission-section p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Section Activités */
+.activities-section {
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.activities-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.activity-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    font-size: 1rem;
+}
+
+/* Section Inspiration */
+.inspiration-section {
+    padding: 4rem 2rem;
+    background-color: #2c3e50;
+    color: white;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.inspiration-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Section CTA */
+.cta-section {
+    padding: 4rem 2rem;
+    background-color: #1abc9c;
+    color: white;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

@@ -1,0 +1,35 @@
+/* Newsletter.css */
+.gt-mailchimp-newsletter {
+    background-color: #f9f9f9;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.gt-mailchimp-newsletter .gt-columns {
+    display: flex;
+    justify-content: center;
+}
+
+.gt-mailchimp-newsletter .gt-col {
+    margin: 0 10px;
+}
+
+.gt-mailchimp-newsletter input[type="email"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.gt-mailchimp-newsletter button {
+    padding: 10px 20px;
+    background-color: #a8201a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.gt-mailchimp-newsletter button:hover {
+    background-color: #8c1b16;
+}

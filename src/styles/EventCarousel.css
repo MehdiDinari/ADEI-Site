@@ -1,0 +1,50 @@
+/* EventCarousel.css */
+.gt-events-carousel {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.gt-event-style-3 {
+    flex: 0 0 auto;
+    width: 300px;
+    margin-right: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.gt-event-style-3 .gt-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.gt-event-style-3 .gt-title {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.gt-event-style-3 .gt-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.gt-event-style-3 .gt-title a:hover {
+    color: #a8201a;
+}
+
+.gt-event-style-3 .gt-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.gt-event-style-3 .gt-details svg {
+    margin-right: 5px;
+}
+
+.gt-event-style-3 .gt-text {
+    font-size: 0.9rem;
+    color: #666;
+}
