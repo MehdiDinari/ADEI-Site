@@ -4,7 +4,7 @@ import '../styles/NewsCarousel.css';
 const NewsCarousel = () => {
     const news = [
         {
-            title: "L’ENCGKISTE MAGAZINE OCTOBRE",
+            title: "L’ASD MAGAZINE OCTOBRE",
             image: "/assets/images/AZ3-590x550.png",
             link: "/lencgkiste-magazine-octobre/",
             excerpt: "La cinquième édition du magazine L’ENCGKISTE est en fin là ! Enjoy reading."
