@@ -1,7 +1,11 @@
-import React from 'react';
-import '../styles/EventCarousel.css';
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, Calendar, Clock } from 'lucide-react';
+import '../styles/EventCarousel.css'
 
 const EventCarousel = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [touchPosition, setTouchPosition] = useState(null);
+
     const events = [
         {
             title: "Soirée Traditionnelle 2024",
@@ -11,44 +15,144 @@ const EventCarousel = () => {
             link: "/event/soiree-traditionnelle-2024/",
             excerpt: "La salle des fêtes Ballroom-Waves à Kénitra a accueilli une Soirée Traditionnelle inoubliable..."
         },
-        // Ajoutez d'autres événements ici
+        {
+            title: "Festival de Musique Amazigh",
+            date: "15 janvier 2025",
+            time: "20:00",
+            image: "/assets/images/festival-amazigh.jpg",
+            link: "/event/festival-amazigh-2025/",
+            excerpt: "Célébration de la culture et musique amazigh avec des artistes renommés et émergents..."
+        },
+        {
+            title: "Exposition d'Art Contemporain",
+            date: "22 février 2025",
+            time: "10:00",
+            image: "/assets/images/expo-art.jpg",
+            link: "/event/exposition-art-2025/",
+            excerpt: "Une collection exceptionnelle d'œuvres d'artistes marocains et internationaux..."
+        },
+        {
+            title: "Conférence sur le Patrimoine",
+            date: "10 mars 2025",
+            time: "15:30",
+            image: "/assets/images/conference.jpg",
+            link: "/event/conference-patrimoine/",
+            excerpt: "Explorer la richesse du patrimoine culturel marocain et son influence mondiale..."
+        }
     ];
 
+    // Timer pour le défilement automatique
+    useEffect(() => {
+        const interval = setInterval(() => {
+            nextSlide();
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [activeIndex]);
+
+    // Gestion des flèches du clavier
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [activeIndex]);
+
+    // Navigation du carrousel
+    const nextSlide = () => {
+        setActiveIndex((current) => (current === events.length - 1 ? 0 : current + 1));
+    };
+
+    const prevSlide = () => {
+        setActiveIndex((current) => (current === 0 ? events.length - 1 : current - 1));
+    };
+
+    // Support tactile
+    const handleTouchStart = (e) => {
+        setTouchPosition(e.touches[0].clientX);
+    };
+
+    const handleTouchMove = (e) => {
+        if (touchPosition === null) return;
+
+        const diff = touchPosition - e.touches[0].clientX;
+        if (diff > 50) {
+            nextSlide();
+            setTouchPosition(null);
+        } else if (diff < -50) {
+            prevSlide();
+            setTouchPosition(null);
+        }
+    };
+
+    // Calcul des classes pour les animations
+    const getSlideClass = (index) => {
+        if (index === activeIndex) return 'gt-event-card active';
+        if (index === (activeIndex + 1) % events.length) return 'gt-event-card next';
+        if (index === (activeIndex - 1 + events.length) % events.length) return 'gt-event-card prev';
+        return 'gt-event-card';
+    };
+
     return (
-        <div className="gt-events-carousel">
-            {events.map((event, index) => (
-                <div key={index} className="gt-event-style-3">
-                    <div className="gt-image">
-                        <a href={event.link}>
-                            <img src={event.image} alt={event.title} />
-                        </a>
-                    </div>
-                    <div className="gt-content">
-                        <div className="gt-title">
-                            <a href={event.link}>{event.title}</a>
-                        </div>
-                        <div className="gt-details">
-                            <div className="gt-date">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
-                                <span>{event.date}</span>
+        <div className="gt-events-carousel-container">
+            <h2 className="gt-carousel-title">Événements à venir</h2>
+
+            <div
+                className="gt-events-carousel"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+            >
+                {events.map((event, index) => (
+                    <div key={index} className={getSlideClass(index)}>
+                        <div className="gt-event-content">
+                            <div className="gt-image">
+                                <a href={event.link}>
+                                    <img src={event.image} alt={event.title} />
+                                    <div className="gt-image-overlay"></div>
+                                </a>
                             </div>
-                            <div className="gt-time">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                <span>{event.time}</span>
+                            <div className="gt-details-container">
+                                <div className="gt-title">
+                                    <a href={event.link}>{event.title}</a>
+                                </div>
+                                <div className="gt-details">
+                                    <div className="gt-date">
+                                        <Calendar size={16} />
+                                        <span>{event.date}</span>
+                                    </div>
+                                    <div className="gt-time">
+                                        <Clock size={16} />
+                                        <span>{event.time}</span>
+                                    </div>
+                                </div>
+                                <div className="gt-text">{event.excerpt}</div>
+                                <a href={event.link} className="gt-read-more">En savoir plus</a>
                             </div>
                         </div>
-                        <div className="gt-text">{event.excerpt}</div>
                     </div>
+                ))}
+
+                <button className="gt-nav-button gt-prev" onClick={prevSlide} aria-label="Événement précédent">
+                    <ChevronLeft size={24} />
+                </button>
+
+                <button className="gt-nav-button gt-next" onClick={nextSlide} aria-label="Événement suivant">
+                    <ChevronRight size={24} />
+                </button>
+
+                <div className="gt-carousel-indicators">
+                    {events.map((_, index) => (
+                        <button
+                            key={index}
+                            className={`gt-indicator ${index === activeIndex ? 'active' : ''}`}
+                            onClick={() => setActiveIndex(index)}
+                            aria-label={`Aller à l'événement ${index + 1}`}
+                        />
+                    ))}
                 </div>
-            ))}
+            </div>
         </div>
     );
 };

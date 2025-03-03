@@ -1,114 +1,434 @@
+/* ===== NAVBAR MAGNIFIQUE ===== */
+/* Variables pour personnalisation facile */
+:root {
+    --primary: #d7140e;
+    --primary-glow: rgba(215, 20, 14, 0.6);
+    --primary-light: #ff3a34;
+    --accent: #3b82f6;
+    --text-light: #ffffff;
+    --text-dark: #0f172a;
+    --bg-dark: rgba(13, 17, 23, 0.95);
+    --bg-gradient: linear-gradient(135deg, rgba(13, 17, 23, 0.85), rgba(30, 41, 59, 0.95));
+    --scrolled-bg: var(--primary);
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    --transition-bounce: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 15px var(--primary-glow);
+    --font-main: 'Inter', system-ui, sans-serif;
+}
+
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    -webkit-font-smoothing: antialiased;
+    transition: var(--transition-fast);
+}
+
+/* Structure principale de la navbar */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: transparent;
-    color: white;
-    padding: 1rem 2rem;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    height: 80px;
+    color: var(--text-light);
+    padding: 0.5rem 2rem;
+    transition: var(--transition-smooth);
     z-index: 1000;
+    backdrop-filter: blur(0px);
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    transition: var(--transition-smooth);
+    z-index: -1;
 }
 
 .navbar.scrolled {
-    background-color: blue !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    height: 70px;
+    box-shadow: var(--shadow-sm);
 }
+
+.navbar.scrolled::before {
+    background: var(--primary);
+    opacity: 0.95;
+}
+
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1400px;
+    height: 100%;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
+/* Élément décoratif */
+.navbar-decorator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.navbar.scrolled .navbar-decorator {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Logo styling */
 .navbar-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    transition: color 0.3s ease;
+    z-index: 5;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.navbar-logo img {
-    height: 60px; /* Ajustez la hauteur du logo */
-    width: auto; /* Garde les proportions du logo */
 
+.logo-wrapper {
+    position: relative;
+    overflow: visible;
 }
-.navbar-logo:hover {
-    color: #d7140e
-;
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+    transition: var(--transition-bounce);
+}
+
+.navbar-logo:hover .logo-img {
+    transform: scale(1.05);
+}
+
+.logo-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.navbar-logo:hover .logo-glow {
+    opacity: 0.6;
+    animation: pulse 2s infinite;
+}
+
+/* Menu principal */
+.navbar-menu-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .navbar-links {
-    list-style: none;
     display: flex;
-    gap: 2rem;
-    margin: 0;
+    align-items: center;
+    gap: 3rem;
+    list-style: none;
+    position: relative;
     padding: 0;
+    margin: 0;
 }
 
+/* Indicateur de menu */
+.menu-indicator {
+    position: absolute;
+    bottom: -8px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-light), var(--primary));
+    border-radius: 4px;
+    box-shadow: 0 0 10px var(--primary-glow);
+    transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.4s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Éléments de navigation */
 .navbar-links li {
     position: relative;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .navbar-links a {
-    color: white;
+    color: var(--text-light);
     text-decoration: none;
     font-size: 1rem;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 0;
+    display: block;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.navbar-links a:hover {
-    color: #d7140e
-;
+.navbar-links a .link-text {
+    position: relative;
+    z-index: 2;
 }
 
-.navbar-links a::after {
+.navbar-links a:hover,
+.navbar-links a.active {
+    color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* Effet de survol avancé */
+.navbar-links a::before {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: #d7140e
-;
-    bottom: -5px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.navbar-links a:hover::before,
+.navbar-links a.active::before {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+/* Bouton d'action */
+.navbar-action {
+    margin-left: 2rem;
+}
+
+.action-button {
+    position: relative;
+    display: inline-block;
+    padding: 0.6rem 1.8rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: transform var(--transition-bounce), box-shadow var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    z-index: 1;
+}
+
+.button-text {
+    position: relative;
+    z-index: 3;
+}
+
+.action-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-glow);
+}
+
+.action-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+    var(--primary),
+    var(--accent),
+    var(--primary-light),
+    var(--primary)
+    );
+    border-radius: 50px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.action-button:hover::before {
+    opacity: 1;
+    animation: rotate 3s linear infinite;
+}
+
+.button-glow {
+    position: absolute;
+    top: 0;
     left: 0;
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--primary-glow), transparent 70%);
+    transform: scale(0);
+    opacity: 0;
+    z-index: 2;
+    transition: all 0.5s ease;
 }
 
-.navbar-links a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+.action-button:hover .button-glow {
+    transform: scale(1.5);
+    opacity: 0.4;
+    animation: pulse 2s infinite;
 }
 
-/* Mobile menu styles */
+/* Bouton de menu mobile */
 .navbar-mobile-icon {
     display: none;
-    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    position: relative;
     cursor: pointer;
-    transition: color 0.3s ease;
+    z-index: 10;
 }
 
-.navbar-mobile-icon:hover {
-    color: #d7140e
-;
+.burger-icon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-/* Responsive styles */
+.burger-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-light);
+    border-radius: 3px;
+    transform-origin: center;
+    transition: var(--transition-smooth);
+}
+
+.navbar-mobile-icon.active .burger-icon span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+    background-color: var(--primary);
+}
+
+.navbar-mobile-icon.active .burger-icon span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.navbar-mobile-icon.active .burger-icon span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+    background-color: var(--primary);
+}
+
+/* Backdrop du menu mobile */
+.menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 10, 15, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 0.4; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Styles responsifs */
+@media (max-width: 992px) {
+    .navbar-menu-container {
+        justify-content: flex-end;
+    }
+
+    .navbar-action {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-container {
+        justify-content: space-between;
+    }
+
+    .navbar-menu-container {
+        position: static;
+    }
+
     .navbar-links {
         position: fixed;
-        top: 60px;
+        top: 0;
         right: 0;
         flex-direction: column;
-        background-color: #2c3e50;
-        width: 100%;
-        height: calc(100vh - 60px);
         justify-content: center;
         align-items: center;
+        gap: 2.5rem;
+        width: 300px;
+        height: 100vh;
+        background: var(--bg-dark);
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+        z-index: 5;
         transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        padding: 5rem 2rem;
     }
 
     .navbar-links.active {
@@ -118,7 +438,7 @@
     .navbar-links li {
         opacity: 0;
         transform: translateX(20px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     .navbar-links.active li {
@@ -126,26 +446,94 @@
         transform: translateX(0);
     }
 
-    .navbar-links.active li:nth-child(1) {
-        transition-delay: 0.1s;
+    .navbar-links a {
+        font-size: 1.2rem;
+        padding: 0.8rem 0;
     }
-    .navbar-links.active li:nth-child(2) {
-        transition-delay: 0.2s;
-    }
-    .navbar-links.active li:nth-child(3) {
-        transition-delay: 0.3s;
-    }
-    .navbar-links.active li:nth-child(4) {
-        transition-delay: 0.4s;
-    }
-    .navbar-links.active li:nth-child(5) {
-        transition-delay: 0.5s;
-    }
-    .navbar-links.active li:nth-child(6) {
-        transition-delay: 0.6s;
+
+    .menu-indicator {
+        display: none;
     }
 
     .navbar-mobile-icon {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Animation pour le menu mobile */
+    .navbar-links.active li:nth-child(1) { transition-delay: 0.1s; }
+    .navbar-links.active li:nth-child(2) { transition-delay: 0.2s; }
+    .navbar-links.active li:nth-child(3) { transition-delay: 0.3s; }
+    .navbar-links.active li:nth-child(4) { transition-delay: 0.4s; }
+    .navbar-links.active li:nth-child(5) { transition-delay: 0.5s; }
+    .navbar-links.active li:nth-child(6) { transition-delay: 0.6s; }
+
+    /* Animation de bordure pour mobile */
+    .navbar-links li::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        transition: width 0.4s ease;
+    }
+
+    .navbar-links li:hover::after {
+        width: 100%;
+    }
+}
+
+/* Animations supplémentaires et effets de style */
+.navbar-links li.active a {
+    font-weight: 600;
+}
+
+.navbar.menu-open {
+    background: transparent;
+}
+
+.logo-img {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.navbar.scrolled .logo-img {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
+}
+
+/* Effet de scintillement pour le logo lors du survol */
+.navbar-logo:hover .logo-img {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Effet d'ombre pour le menu au survol */
+.navbar-links a:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Effet de bordure brillante pour le menu mobile */
+@media (max-width: 768px) {
+    .navbar-links::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+        opacity: 0.5;
+    }
+
+    .navbar-links::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top right, rgba(215, 20, 14, 0.1), transparent 70%);
+        pointer-events: none;
     }
 }

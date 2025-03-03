@@ -1,50 +1,367 @@
-/* EventCarousel.css */
+/* EventCarousel.css - Style incroyable */
+
+/* Variables pour faciliter la personnalisation */
+:root {
+    --primary-color: #3a86ff;
+    --secondary-color: #ff006e;
+    --text-color: #2b2d42;
+    --light-text: #8d99ae;
+    --background: #ffffff;
+    --card-background: #ffffff;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.4s;
+    --border-radius: 16px;
+    --spacing: 1.5rem;
+}
+
+/* Container principal */
+.gt-events-carousel-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    overflow: hidden;
+}
+
+.gt-carousel-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.gt-carousel-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+/* Carrousel */
 .gt-events-carousel {
-    display: flex;
-    overflow-x: auto;
-    padding: 20px 0;
+    position: relative;
+    height: 500px;
+    margin: 2rem 0;
+    perspective: 1000px;
 }
 
-.gt-event-style-3 {
-    flex: 0 0 auto;
-    width: 300px;
-    margin-right: 20px;
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.gt-event-style-3 .gt-image img {
+/* Cartes d'événements */
+.gt-event-card {
+    position: absolute;
     width: 100%;
-    height: auto;
-    border-radius: 5px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%) scale(0.8);
+    transition:
+            opacity var(--transition-speed) ease,
+            transform var(--transition-speed) ease,
+            visibility var(--transition-speed) ease;
+    z-index: 1;
 }
 
-.gt-event-style-3 .gt-title {
-    font-size: 1.2rem;
-    margin: 10px 0;
+.gt-event-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    z-index: 3;
 }
 
-.gt-event-style-3 .gt-title a {
-    color: #333;
-    text-decoration: none;
+.gt-event-card.prev {
+    opacity: 0.7;
+    visibility: visible;
+    transform: translateX(-30%) scale(0.85);
+    z-index: 2;
 }
 
-.gt-event-style-3 .gt-title a:hover {
-    color: #a8201a;
+.gt-event-card.next {
+    opacity: 0.7;
+    visibility: visible;
+    transform: translateX(30%) scale(0.85);
+    z-index: 2;
 }
 
-.gt-event-style-3 .gt-details {
+/* Contenu de la carte */
+.gt-event-content {
     display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.gt-event-style-3 .gt-details svg {
-    margin-right: 5px;
+.gt-event-card.active .gt-event-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.gt-event-style-3 .gt-text {
+/* Image de l'événement */
+.gt-image {
+    position: relative;
+    width: 100%;
+    height: 55%;
+    overflow: hidden;
+}
+
+.gt-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gt-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.gt-event-card.active .gt-image:hover img {
+    transform: scale(1.05);
+}
+
+.gt-event-card.active .gt-image:hover .gt-image-overlay {
+    opacity: 0.4;
+}
+
+/* Conteneur des détails */
+.gt-details-container {
+    padding: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+}
+
+/* Titre de l'événement */
+.gt-title {
+    margin-bottom: 1rem;
+}
+
+.gt-title a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.gt-title a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.gt-title a:hover {
+    color: var(--primary-color);
+}
+
+.gt-title a:hover::after {
+    width: 100%;
+}
+
+/* Détails date et heure */
+.gt-details {
+    display: flex;
+    margin-bottom: 1rem;
+    gap: 1.5rem;
+}
+
+.gt-date, .gt-time {
+    display: flex;
+    align-items: center;
+    color: var(--light-text);
     font-size: 0.9rem;
-    color: #666;
 }
+
+.gt-date svg, .gt-time svg {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+}
+
+/* Texte de l'extrait */
+.gt-text {
+    margin-bottom: 1.5rem;
+    color: var(--light-text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+/* Bouton "En savoir plus" */
+.gt-read-more {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-color) 60%, var(--secondary-color));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    align-self: flex-start;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gt-read-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(58, 134, 255, 0.4);
+}
+
+/* Boutons de navigation */
+.gt-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.gt-nav-button:hover {
+    background-color: white;
+    color: var(--primary-color);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.gt-prev {
+    left: 10px;
+}
+
+.gt-next {
+    right: 10px;
+}
+
+/* Indicateurs du carrousel */
+.gt-carousel-indicators {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.gt-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--light-text);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gt-indicator.active {
+    opacity: 1;
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.gt-indicator:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
+}
+
+/* Responsive design */
+@media (min-width: 768px) {
+    .gt-event-content {
+        flex-direction: row;
+    }
+
+    .gt-image {
+        width: 50%;
+        height: 100%;
+    }
+
+    .gt-details-container {
+        width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .gt-events-carousel {
+        height: 600px;
+    }
+
+    .gt-event-card.prev,
+    .gt-event-card.next {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .gt-nav-button {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gt-carousel-title {
+        font-size: 1.8rem;
+    }
+
+    .gt-details {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .gt-title a {
+        font-size: 1.3rem;
+    }
+}
+
+/* Animation supplémentaire */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.gt-event-card.active .gt-title,
+.gt-event-card.active .gt-details,
+.gt-event-card.active .gt-text,
+.gt-event-card.active .gt-read-more {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.gt-event-card.active .gt-title { animation-delay: 0.2s; }
+.gt-event-card.active .gt-details { animation-delay: 0.3s; }
+.gt-event-card.active .gt-text { animation-delay: 0.4s; }
+.gt-event-card.active .gt-read-more { animation-delay: 0.5s; }
