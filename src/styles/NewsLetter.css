@@ -1,155 +1,438 @@
+/* NewsLetter.css - Style moderne et animé */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #3a86ff;
+    --secondary-color: #ff006e;
+    --dark-bg: #1a1a2e;
+    --dark-bg-light: #222244;
+    --text-light: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --success-color: #06d6a0;
+    --error-color: #ef476f;
+    --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --border-radius: 15px;
+}
+
+/* Conteneur principal qui prend 100% de largeur et hauteur */
 .gt-mailchimp-newsletter {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Fond sombre */
 .gt-mailchimp-newsletter.gt-dark {
-    background: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%);
-    color: white;
+    background: var(--dark-bg);
+    color: var(--text-light);
+    position: relative;
 }
 
+/* Effet de motif en fond */
+.gt-mailchimp-newsletter.gt-dark::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='rgba(255,255,255,0.05)' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-size: 180px;
+    animation: backgroundMove 100s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes backgroundMove {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+/* Forme décorative animée */
+.gt-mailchimp-newsletter.gt-dark::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: var(--gradient);
+    opacity: 0.3;
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: pulse 10s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.2; }
+    100% { transform: scale(1); opacity: 0.3; }
+}
+
+/* Formulaire */
+.mc4wp-form {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.mc4wp-form-fields {
+    background: var(--dark-bg-light);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+/* Effet de brillance au survol */
+.mc4wp-form-fields::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(30deg);
+    z-index: -1;
+    pointer-events: none;
+    transition: var(--transition);
+    opacity: 0;
+}
+
+.mc4wp-form-fields:hover::before {
+    opacity: 1;
+    animation: glowEffect 3s ease-in-out infinite;
+}
+
+@keyframes glowEffect {
+    0% { transform: rotate(30deg) translateX(0); }
+    50% { transform: rotate(30deg) translateX(20px); }
+    100% { transform: rotate(30deg) translateX(0); }
+}
+
+/* Titre et description */
 .newsletter-title {
-    font-size: 28px;
+    font-size: 2.6rem;
     font-weight: 700;
     margin-bottom: 15px;
     text-align: center;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.newsletter-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient);
+    border-radius: 2px;
 }
 
 .newsletter-description {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 25px;
     text-align: center;
-    opacity: 0.9;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Colonnes et structure */
 .gt-columns {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    width: 100%;
 }
 
 .gt-col {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 500px;
+    gap: 20px;
 }
 
 @media (min-width: 768px) {
     .gt-col {
         flex-direction: row;
     }
+
+    .gt-col .gt-inner:first-child {
+        flex: 1;
+    }
 }
 
 .gt-inner {
-    margin: 8px;
     position: relative;
 }
 
-.gt-inner:first-child {
-    flex: 1;
-}
-
+/* Champ de saisie email */
 input[type="email"] {
     width: 100%;
-    padding: 16px 20px;
-    border-radius: 30px;
-    border: none;
-    font-size: 16px;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
+    padding: 18px 25px;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-light);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+    outline: none;
+    box-sizing: border-box;
+}
+
+input[type="email"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 input[type="email"]:focus {
-    outline: none;
-    background-color: white;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(58, 134, 255, 0.3);
 }
 
 input[type="email"].input-error {
-    border: 2px solid #ff5252;
+    border-color: var(--error-color);
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
 .error-message {
-    color: #ff5252;
-    font-size: 14px;
+    color: var(--error-color);
+    font-size: 0.8rem;
     position: absolute;
     bottom: -22px;
-    left: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 2px 10px;
-    border-radius: 4px;
+    left: 15px;
+    animation: fadeIn 0.3s ease;
 }
 
+/* Bouton d'inscription */
 button[type="submit"] {
-    padding: 16px 30px;
-    border-radius: 30px;
+    background: var(--gradient);
+    color: var(--text-light);
     border: none;
-    background-color: #FFA500;
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
+    padding: 18px 35px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    text-transform: uppercase;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
     letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(255, 0, 110, 0.3);
+    font-family: inherit;
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: width 0.5s ease;
 }
 
 button[type="submit"]:hover {
-    background-color: #FF8C00;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 0, 110, 0.4);
 }
 
+button[type="submit"]:hover::before {
+    width: 100%;
+}
+
+button[type="submit"]:active {
+    transform: translateY(-1px);
+}
+
+/* Message de confidentialité */
 .newsletter-privacy {
     text-align: center;
-    font-size: 14px;
-    margin-top: 15px;
-    opacity: 0.8;
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }
 
 .newsletter-privacy a {
-    color: #FFA500;
-    text-decoration: underline;
+    color: var(--primary-color);
+    text-decoration: none;
+    position: relative;
+    transition: var(--transition);
+}
+
+.newsletter-privacy a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
 }
 
 .newsletter-privacy a:hover {
-    color: white;
+    color: var(--secondary-color);
 }
 
-/* Style pour le message de succès */
+.newsletter-privacy a:hover::after {
+    width: 100%;
+}
+
+/* Confirmation de l'inscription */
 .subscription-success {
     text-align: center;
-    padding: 30px 20px;
+    background: var(--dark-bg-light);
+    padding: 60px 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    animation: successFadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes successFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .success-icon {
     width: 80px;
     height: 80px;
-    margin: 0 auto 20px;
-    background-color: #4CAF50;
+    background: var(--success-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
+    font-size: 2.5rem;
     color: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin: 0 auto 30px;
+    box-shadow: 0 10px 20px rgba(6, 214, 160, 0.3);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards,
+    float 3s ease-in-out infinite 1s;
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
 }
 
 .subscription-success h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subscription-success p {
-    font-size: 18px;
-    opacity: 0.9;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .newsletter-title {
+        font-size: 2rem;
+    }
+
+    .mc4wp-form-fields {
+        padding: 30px 20px;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .subscription-success {
+        padding: 40px 20px;
+    }
+
+    .subscription-success h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .newsletter-title {
+        font-size: 1.6rem;
+    }
+
+    .newsletter-description {
+        font-size: 1rem;
+    }
+
+    .success-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .subscription-success h2 {
+        font-size: 1.5rem;
+    }
 }
