@@ -24,7 +24,7 @@ const EventCarousel = () => {
             excerpt: "Célébration de la culture et musique amazigh avec des artistes renommés et émergents..."
         },
         {
-            title: "Exposition d'Art Contemporain",
+            title: "Exposition d'Art deContemporain",
             date: "22 février 2025",
             time: "10:00",
             image: "/assets/images/expo-art.jpg",
