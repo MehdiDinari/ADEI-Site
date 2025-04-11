@@ -357,7 +357,7 @@ const Header = () => {
                     <h2 className="cta-title">Prêt à innover avec nous ?</h2>
                     <p className="cta-text">
                         Rejoignez une communauté qui repousse les limites de la créativité et de
-                        l'innovation.
+                        l'innovation!
                     </p>
                     <Link to="/get-started" className="cta-button primary animated">
                         <span>Commencez votre voyage</span>
