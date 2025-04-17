@@ -20,7 +20,7 @@ const NewsCarousel = () => {
         {
             title: "Les Tendances Marketing en 2025",
             image: "/assets/images/magazine-2.jpg",
-            link: "/tendances-marketing-2025/",
+            link: "/tendances-marketing-2024/",
             excerpt: "Découvrez les nouvelles stratégies qui façonnent le monde du marketing digital.",
             category: "Business"
         },
