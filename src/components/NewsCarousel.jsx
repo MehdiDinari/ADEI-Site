@@ -11,7 +11,7 @@ const NewsCarousel = () => {
     // Sample news items
     const news = [
         {
-            title: "L'ASD MAGAZINE OCTOBRE",
+            title: "L'ASD MAGAZINEe OCTOBRE",
             image: "/assets/images/AZ3-590x550.png",
             link: "/lencgkiste-magazine-octobre/",
             excerpt: "La cinquième édition du magazine L'ENCGKISTE est en fin là ! Enjoy reading.",
