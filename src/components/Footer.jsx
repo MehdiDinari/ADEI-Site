@@ -54,7 +54,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-column">
-                    <h3 className="footer-title">Suivez-nous</h3>
+                    <h3 className="footer-title">Suivez nous</h3>
                     <div className="social-links">
                         <a href="https://facebook.com" aria-label="Facebook">
                             <svg viewBox="0 0 24 24">
