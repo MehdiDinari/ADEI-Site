@@ -173,7 +173,7 @@ body {
 }
 
 .section-content {
-    max-width: 1201px;
+    max-width: 1200px;
     width: 100%;
     opacity: 0;
     transform: translateY(30px);
