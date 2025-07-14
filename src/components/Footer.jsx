@@ -82,7 +82,7 @@ const Footer = () => {
             <div className="footer-bottom">
                 <div className="footer-bottom-content">
                     <div className="copyright">
-                        &copy; {currentYear} ADEI. Tous droits réservés.
+                        &copy; {currentYear} ADEI.Tous droits réservés.
                     </div>
                     <div className="legal">
                         <a href="/privacy">Confidentialité</a>
