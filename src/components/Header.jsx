@@ -36,8 +36,8 @@ const Header = () => {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
                 this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 1;
-                this.speedY = (Math.random() - 0.5) * 1;
+                this.speedX = (Math.random() - 0.50) * 1;
+                this.speedY = (Math.random() - 0.51) * 1;
                 this.color = `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.2})`;
             }
 
